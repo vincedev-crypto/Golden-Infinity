@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brilliant Seas Shipping Corporation</title>
+    <!-- Subresource Integrity (OWASP Top 10) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- strict CSP requires inline styles to be hashed or put into external files, applying basic external here -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="top-meta-bar">
+        <div class="container d-flex justify-content-between flex-wrap gap-2">
+            <span>Established February 18, 1982</span>
+            <span>Philippine Ship Manning and Crew Management</span>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top main-nav">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="brand-title">Brilliant Seas</span>
+                <small>Maritime Digital Hub</small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="leaders.html">Leadership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="awards.html">Awards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#partners">Partners</a>
+                    </li>
+                    <li class="nav-item" id="nav-book-ticket" style="display: none;">
+                        <a class="nav-link" href="#">Book Ticket</a>
+                    </li>
+                </ul>
+                <div class="d-flex" id="auth-controls">
+                    <a class="btn btn-outline-light me-2" href="login.html">Login</a>
+                    <button class="btn btn-warning" onclick="showRegister()">Register</button>
+                </div>
+                <div class="d-flex" id="user-controls" style="display: none!important;">
+                    <span class="navbar-text me-3 text-white" id="user-greeting">Hello, User</span>
+                    <button class="btn btn-outline-light" onclick="auth.logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-wrap">
+        <div class="container">
+            <div class="hero-panel">
+                <div>
+                    <p class="eyebrow">Brilliant Seas Shipping Corporation</p>
+                    <h1>Service That Is Truly Brilliant.</h1>
+                    <p class="lead-copy">A Philippine corporation engaged in the recruitment and employment of qualified, certificated, and medically fit seafarers for ocean-going vessels.</p>
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <button class="btn btn-primary btn-lg" type="button">View Services</button>
+                        <button class="btn btn-outline-light btn-lg" type="button">Our Partners</button>
+                    </div>
+                </div>
+                <article class="feature-card">
+                    <img src="https://images.unsplash.com/photo-1577208173988-41cf3a67f7b8?auto=format&fit=crop&w=1200&q=80" alt="Seafarer operations and vessel deck">
+                    <div class="feature-card-body">
+                        <span>POEA Top Performer Awardee</span>
+                        <h3>Recognized for sustained excellence in Philippine manning and seafarer development.</h3>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <main class="container sections-wrap">
+        <section id="about" class="content-section">
+            <div class="section-head">
+                <h2>Company Background</h2>
+            </div>
+            <div class="info-grid">
+                <article class="info-card">
+                    <h3>Who We Are</h3>
+                    <p>Brilliant Seas Shipping Corporation was established on February 18, 1982. From an initial fleet of two vessels and 29 crew members, it expanded to support general cargo, multi-purpose heavy lift, bulk, tanker, container, inland, and fishing vessels.</p>
+                </article>
+                <article class="info-card">
+                    <h3>Commitment</h3>
+                    <p>We are managed by qualified and competent professionals, properly screened and evaluated prior to acceptance, with a continued focus on competency, compliance, and reliable service delivery for global principals.</p>
+                </article>
+                <article class="info-card">
+                    <h3>Recognition</h3>
+                    <p>Brilliant Seas is recognized among the top manning agencies in the industry, including POEA Top Performer recognition and citations for sustained operations and contribution to Filipino seafarer opportunities.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-section mv-section">
+            <div class="section-head">
+                <h2>Mission and Vision</h2>
+            </div>
+            <div class="mv-grid">
+                <article class="quote-card">
+                    <h4>Mission</h4>
+                    <p>"To provide qualified seafarers who are globally competitive, medically fit, certificated and are responsive to the needs of the World Maritime Industry."</p>
+                </article>
+                <article class="quote-card">
+                    <h4>Vision</h4>
+                    <p>"To be recognized as the leading organization in the provision of international ship manning services."</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="services" class="content-section split-section">
+            <div class="section-head">
+                <h2>Fleet Coverage and Services</h2>
+            </div>
+            <div class="event-list">
+                <article class="mini-item">
+                    <h4>General Cargo and Bulk</h4>
+                    <p>Deployment and crew support for cargo and bulk vessel operations.</p>
+                    <span>Manning Services</span>
+                </article>
+                <article class="mini-item">
+                    <h4>Tanker and Container</h4>
+                    <p>Competent, certificated crews for specialized international vessel categories.</p>
+                    <span>Crew Management</span>
+                </article>
+                <article class="mini-item">
+                    <h4>Inland and Fishing Vessels</h4>
+                    <p>Responsive staffing and operational support tailored to principal requirements.</p>
+                    <span>Operations Support</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="partners" class="content-section learn-strip">
+            <div class="section-head">
+                <h2>Awards and Recognition</h2>
+                <a href="awards.html">View All Awards</a>
+            </div>
+            <div class="chips-wrap">
+                <a href="award-1992-top-performer.html">POEA Top Performer Award (1992)</a>
+                <a href="award-2002-operations.html">Sustained Operations Citation (2002)</a>
+                <a href="award-2002-competence.html">Filipino Seafarer Competence Promotion Citation (2002)</a>
+            </div>
+        </section>
+
+        <section class="content-section leaders-section">
+            <div class="section-head">
+                <h2>Leadership</h2>
+                <a href="leaders.html">View Full Leadership</a>
+            </div>
+            <div class="leaders-grid">
+                <a class="leader-link" href="leader-praxedes.html">
+                    <article class="leader-card">
+                        <img class="leader-photo" src="images/praxedes-bronda.png" alt="C/E Praxedes P. Bronda" onerror="this.onerror=null;this.src='https://placehold.co/800x1000/e9f2fb/1f3f62?text=Leadership+Photo';">
+                        <h4>C/E Praxedes P. Bronda</h4>
+                        <p>President</p>
+                    </article>
+                </a>
+                <a class="leader-link" href="leader-glicerio.html">
+                    <article class="leader-card">
+                        <img class="leader-photo" src="images/glicerio-penones.png" alt="Capt. Glicerio Penones Jr." onerror="this.onerror=null;this.src='https://placehold.co/800x1000/e9f2fb/1f3f62?text=Leadership+Photo';">
+                        <h4>Capt. Glicerio Penones Jr.</h4>
+                        <p>Vice President / General Manager</p>
+                    </article>
+                </a>
+                <a class="leader-link" href="leader-riza.html">
+                    <article class="leader-card">
+                        <img class="leader-photo" src="images/riza-maratas.jpg" alt="Riza Monica A. Maratas" onerror="this.onerror=null;this.src='https://placehold.co/800x1000/e9f2fb/1f3f62?text=Leadership+Photo';">
+                        <h4>Riza Monica A. Maratas</h4>
+                        <p>Administrative Manager / Crew Supervisor</p>
+                    </article>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container d-flex justify-content-between flex-wrap gap-3">
+            <div>
+                <h5>Brilliant Seas</h5>
+                <p>International ship manning and seafarer workforce solutions.</p>
+            </div>
+            <div>
+                <p>About | Services | Partners</p>
+                <p>Copyright 2023</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

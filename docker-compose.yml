@@ -1,0 +1,42 @@
+version: '3.8'
+
+# Brilliant Seas Shipping — Development Infrastructure
+#
+# SECURITY: This is for local development only. 
+# Production uses managed RDS and ElastiCache.
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: bss_db
+    environment:
+      POSTGRES_DB: brilliantseas
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_POSTGRES_PASSWORD:-postgres_superuser_pass}
+    ports:
+      - "${DB_PORT:-5433}:5432"
+    volumes:
+      - bss_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d brilliantseas"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: bss_redis
+    command: redis-server --requirepass ${REDIS_PASSWORD:-dev_redis_pass}
+    ports:
+      - "6379:6379"
+    volumes:
+      - bss_redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  bss_pgdata:
+  bss_redisdata:

@@ -1,0 +1,131 @@
+# ============================================================================
+# Brilliant Seas Shipping Corporation — Base Configuration
+# 
+# SECURITY RULES:
+#   - NO secrets in this file (all from environment variables)
+#   - ddl-auto: validate (Flyway owns schema)
+#   - show-details: never (no system info exposure)
+#   - All sensitive config via ${ENV_VAR} placeholders
+# ============================================================================
+
+spring:
+  application:
+    name: brilliant-seas
+
+  # ── Database ──────────────────────────────────────────────────────────────
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:${DB_PORT:5432}/brilliantseas}
+    username: ${DB_APP_USER:${DB_POSTGRES_USER:postgres}}
+    password: ${DB_APP_PASSWORD:${DB_POSTGRES_PASSWORD:postgres_superuser_pass}}
+    hikari:
+      maximum-pool-size: ${DB_POOL_MAX:10}
+      minimum-idle: ${DB_POOL_MIN:2}
+      connection-timeout: 10000
+      idle-timeout: 300000
+      max-lifetime: 600000
+      pool-name: BrilliantSeas-HikariCP
+      # Connection-level init SQL: set application name for pg_stat_activity
+      connection-init-sql: SET application_name = 'brilliant-seas'
+
+  # ── JPA / Hibernate ──────────────────────────────────────────────────────
+  jpa:
+    hibernate:
+      ddl-auto: validate           # NEVER create/update — Flyway owns schema
+    open-in-view: false            # Prevent lazy-loading in controllers (N+1 anti-pattern)
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: public
+        jdbc:
+          time_zone: UTC           # All timestamps in UTC
+        format_sql: false          # true only in dev
+
+  # ── Flyway ───────────────────────────────────────────────────────────────
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    validate-on-migrate: true
+    baseline-on-migrate: false
+
+  # ── Redis ────────────────────────────────────────────────────────────────
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:dev_redis_pass}
+      timeout: 2000
+      repositories:
+        enabled: false
+
+  # ── Jackson ──────────────────────────────────────────────────────────────
+  jackson:
+    default-property-inclusion: non_null  # Never serialize null fields
+    serialization:
+      write-dates-as-timestamps: false    # ISO-8601 date format
+      fail-on-empty-beans: false
+    deserialization:
+      fail-on-unknown-properties: true    # Reject unexpected fields (security)
+
+  # ── Async ────────────────────────────────────────────────────────────────
+  task:
+    execution:
+      pool:
+        core-size: 4
+        max-size: 8
+        queue-capacity: 100
+      thread-name-prefix: audit-
+
+# ── Security (Custom) ───────────────────────────────────────────────────────
+security:
+  jwt:
+    private-key-path: ${JWT_PRIVATE_KEY_PATH:classpath:keys/private.pem}
+    public-key-path: ${JWT_PUBLIC_KEY_PATH:classpath:keys/public.pem}
+    access-token-expiry-seconds: 900         # 15 minutes
+    refresh-token-expiry-seconds: 604800     # 7 days
+    issuer: brilliant-seas
+  encryption:
+    pii-key: ${PII_ENCRYPTION_KEY:}          # pgcrypto symmetric key — from Vault
+  rate-limit:
+    enabled: ${RATE_LIMIT_ENABLED:true}
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:3000,http://localhost:8082}
+    max-age-seconds: 3600
+
+# ── Server ──────────────────────────────────────────────────────────────────
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /
+  error:
+    include-message: never          # OWASP A05 — no error details in response
+    include-stacktrace: never       # OWASP A05 — no stack traces ever
+    include-binding-errors: never
+  tomcat:
+    max-http-form-post-size: 1048576   # 1MB max form POST
+    max-swallow-size: 1048576
+
+# ── Actuator ────────────────────────────────────────────────────────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: never           # OWASP A05 — never expose health details
+      show-components: never
+  info:
+    env:
+      enabled: false                # Don't expose env info
+
+# ── Logging ─────────────────────────────────────────────────────────────────
+logging:
+  level:
+    root: INFO
+    com.brilliantseas: INFO
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
+    org.flywaydb: INFO
+  pattern:
+    console: "%d{ISO8601} [%thread] %-5level %logger{36} - [%X{correlationId}] %msg%n"
