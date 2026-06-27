@@ -63,10 +63,12 @@ public class SecurityConfig {
         "/api/v1/auth/password/reset-request",
         "/api/v1/auth/password/reset",
         "/api/v1/auth/refresh",
+        "/api/v1/auth/logout",
         "/api/v1/voyages/**",
         "/api/v1/content/**",
         "/api/v1/health",
-        "/api/v1/health/ready",
+        "/api/v1/health/**",
+        "/api/v1/ws/**",
         "/api/v1/csp-report",
         "/actuator/health",
         "/actuator/prometheus",
@@ -95,8 +97,10 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(PUBLIC_PATHS).permitAll()
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/appointments").permitAll()
                 .requestMatchers("/api/v1/admin/**").hasAnyRole("ADMIN", "SUPERADMIN")
                 .requestMatchers("/api/v1/staff/**").hasAnyRole("STAFF", "ADMIN", "SUPERADMIN")
+                .requestMatchers("/api/v1/appointments/**").hasAnyRole("STAFF", "ADMIN", "SUPERADMIN")
                 .requestMatchers("/api/v1/privacy/**").authenticated()
                 .requestMatchers("/api/v1/bookings/**").authenticated()
                 .requestMatchers("/api/v1/cargo/**").authenticated()
@@ -169,7 +173,7 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(
             Arrays.asList(allowedOrigins.split(","))
         );
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of(
             "Authorization", "Content-Type", "X-CSRF-Token", "X-Correlation-Id"
         ));

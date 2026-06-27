@@ -14,7 +14,7 @@ const auth = (function() {
     let currentUser = null;
     let tokenExpiryTime = null;
 
-    const API_BASE = 'http://localhost:8081/api/v1/auth';
+    const API_BASE = window.APP_AUTH_API_BASE || 'http://localhost:8084/api/v1/auth';
 
     /**
      * Perform login and set tokens.
@@ -146,6 +146,7 @@ const auth = (function() {
         silentRefresh,
         fetchWithAuth,
         getUser: () => currentUser,
+        getAccessToken: () => accessToken,
         isAuthenticated: () => !!accessToken
     };
 })();

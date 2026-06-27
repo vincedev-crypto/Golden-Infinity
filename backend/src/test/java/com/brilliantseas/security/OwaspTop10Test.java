@@ -25,7 +25,7 @@ public class OwaspTop10Test {
 
     @Test
     void testA05_SecurityMisconfiguration_HeadersArePresent() throws Exception {
-        mockMvc.perform(get("/api/v1/health"))
+        mockMvc.perform(get("/api/v1/health").secure(true))
             // Check headers provided by Spring Security
             .andExpect(header().string("X-Content-Type-Options", "nosniff"))
             .andExpect(header().string("X-Frame-Options", "DENY"))
@@ -43,8 +43,8 @@ public class OwaspTop10Test {
 
     @Test
     void testA05_SecurityMisconfiguration_ErrorsReturnJsonNotTrace() throws Exception {
-        // Attempting to access a non-existent endpoint
-        mockMvc.perform(get("/api/v1/non-existent-path-that-will-404"))
+        // Attempting to access a non-existent public endpoint
+        mockMvc.perform(get("/api/v1/health/non-existent-path-that-will-404"))
             .andExpect(status().isNotFound())
             // MUST be JSON format
             .andExpect(content().contentType("application/json"))

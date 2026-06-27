@@ -3,59 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brilliant Seas Shipping Corporation</title>
-    <!-- Subresource Integrity (OWASP Top 10) -->
+    <title>Golden Infinity Management Corp.</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-    <!-- strict CSP requires inline styles to be hashed or put into external files, applying basic external here -->
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-
     <header class="top-meta-bar">
-        <div class="container d-flex justify-content-between flex-wrap gap-2">
-            <span>Established February 18, 1982</span>
-            <span>Philippine Ship Manning and Crew Management</span>
+        <div class="container">
+            <span>WELCOME TO GOLDEN INFINITY MANAGEMENT CORP.</span>
         </div>
     </header>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top main-nav">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <span class="brand-title">Brilliant Seas</span>
-                <small>Maritime Digital Hub</small>
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-title">GOLDEN INFINITY MANAGEMENT CORP.</span>
+                <small>Company Profile</small>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="leaders.html">Leadership</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="awards.html">Awards</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#partners">Partners</a>
-                    </li>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#history">HISTORY</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#vision">Vision</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Our Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#crew">Crew and Personnel</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">OFFICE LOCATION</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#appointment">Appointment</a></li>
                     <li class="nav-item" id="nav-book-ticket" style="display: none;">
-                        <a class="nav-link" href="#">Book Ticket</a>
+                        <a class="nav-link" href="#appointment">Crew Portal</a>
+                    </li>
+                    <li class="nav-item" id="nav-admin-appointments" style="display: none;">
+                        <a class="nav-link" href="admin-appointments.html">Admin</a>
                     </li>
                 </ul>
-                <div class="d-flex" id="auth-controls">
+                <div class="d-flex ms-lg-3 mt-3 mt-lg-0" id="auth-controls">
                     <a class="btn btn-outline-light me-2" href="login.html">Login</a>
                     <button class="btn btn-warning" onclick="showRegister()">Register</button>
                 </div>
-                <div class="d-flex" id="user-controls" style="display: none!important;">
+                <div class="d-flex ms-lg-3 mt-3 mt-lg-0" id="user-controls" style="display: none!important;">
                     <span class="navbar-text me-3 text-white" id="user-greeting">Hello, User</span>
                     <button class="btn btn-outline-light" onclick="auth.logout()">Logout</button>
                 </div>
@@ -67,137 +58,233 @@
         <div class="container">
             <div class="hero-panel">
                 <div>
-                    <p class="eyebrow">Brilliant Seas Shipping Corporation</p>
-                    <h1>Service That Is Truly Brilliant.</h1>
-                    <p class="lead-copy">A Philippine corporation engaged in the recruitment and employment of qualified, certificated, and medically fit seafarers for ocean-going vessels.</p>
-                    <div class="d-flex flex-wrap gap-3 mt-4">
-                        <button class="btn btn-primary btn-lg" type="button">View Services</button>
-                        <button class="btn btn-outline-light btn-lg" type="button">Our Partners</button>
-                    </div>
+                    <p class="eyebrow">WELCOME TO</p>
+                    <h1>GOLDEN INFINITY MANAGEMENT CORP.</h1>
+                    <p class="lead-copy">"Competency, Excellency, Quality and Security is our main PRIORITY"</p>
                 </div>
                 <article class="feature-card">
-                    <img src="https://images.unsplash.com/photo-1577208173988-41cf3a67f7b8?auto=format&fit=crop&w=1200&q=80" alt="Seafarer operations and vessel deck">
+                    <img src="https://images.unsplash.com/photo-1524522173746-f628baad3644?auto=format&fit=crop&w=1200&q=80" alt="Cargo vessel at sea">
                     <div class="feature-card-body">
-                        <span>POEA Top Performer Awardee</span>
-                        <h3>Recognized for sustained excellence in Philippine manning and seafarer development.</h3>
+                        <span>Company Profile</span>
+                        <h3>GOLDEN INFINITY MANAGEMENT CORP.</h3>
                     </div>
                 </article>
             </div>
         </div>
     </section>
 
-    <main class="container sections-wrap">
-        <section id="about" class="content-section">
+    <main class="container sections-wrap pdf-profile">
+        <section id="history" class="content-section">
             <div class="section-head">
-                <h2>Company Background</h2>
+                <h2>HISTORY</h2>
             </div>
-            <div class="info-grid">
-                <article class="info-card">
-                    <h3>Who We Are</h3>
-                    <p>Brilliant Seas Shipping Corporation was established on February 18, 1982. From an initial fleet of two vessels and 29 crew members, it expanded to support general cargo, multi-purpose heavy lift, bulk, tanker, container, inland, and fishing vessels.</p>
-                </article>
-                <article class="info-card">
-                    <h3>Commitment</h3>
-                    <p>We are managed by qualified and competent professionals, properly screened and evaluated prior to acceptance, with a continued focus on competency, compliance, and reliable service delivery for global principals.</p>
-                </article>
-                <article class="info-card">
-                    <h3>Recognition</h3>
-                    <p>Brilliant Seas is recognized among the top manning agencies in the industry, including POEA Top Performer recognition and citations for sustained operations and contribution to Filipino seafarer opportunities.</p>
-                </article>
+            <div class="profile-copy">
+                <h3>GOLDEN INFINITY MANAGEMENT CORP.</h3>
+                <p>Our Company has geared up to establish mutually beneficial tie-up with you. We are a professional company, composed of hardworking and quality- driven people, eager to meet your objective to employ qualified, experienced and competent Filipino ship officers and crew to man your vessels.</p>
+                <p>Our company is committed to Total Quality Management, with human resource quality control program in place, to ensure you mentorious, fair and honest selection of your men.</p>
+                <p>There are many advantages to the hiring of Filipino seafarers/Fisherman. Most importantly is their long experience at sea and outstanding record as seamen. Filipino crew has a good command of the English language. Every seaman (officer/rating) has taken his Standards of Training Certification and Watch keeping (STCW) for seafarers in accordance with International Maritime Organizations (IMO) Rules and Regulations.</p>
+                <p>Filipino Seamen are reliable and hardworking. They maintain a professional and industrious attitude. They are economical to employ but do not compromise themselves on performance or attitude towards their duties and responsibilities. Filipino seaman can be found onboard vessels of all classifications and registries and we believe that they will continue to be an important factor in today's global shipping industry.</p>
             </div>
         </section>
 
-        <section class="content-section mv-section">
-            <div class="section-head">
-                <h2>Mission and Vision</h2>
-            </div>
-            <div class="mv-grid">
-                <article class="quote-card">
-                    <h4>Mission</h4>
-                    <p>"To provide qualified seafarers who are globally competitive, medically fit, certificated and are responsive to the needs of the World Maritime Industry."</p>
-                </article>
-                <article class="quote-card">
-                    <h4>Vision</h4>
-                    <p>"To be recognized as the leading organization in the provision of international ship manning services."</p>
-                </article>
+        <section class="content-section">
+            <div class="profile-copy">
+                <h3>GOLDEN INFINITY MANAGEMENT CORP.</h3>
+                <p>is a highly professional manning agency that provides full range of crew management services handled by an experienced and professional team.</p>
             </div>
         </section>
 
-        <section id="services" class="content-section split-section">
-            <div class="section-head">
-                <h2>Fleet Coverage and Services</h2>
-            </div>
-            <div class="event-list">
-                <article class="mini-item">
-                    <h4>General Cargo and Bulk</h4>
-                    <p>Deployment and crew support for cargo and bulk vessel operations.</p>
-                    <span>Manning Services</span>
-                </article>
-                <article class="mini-item">
-                    <h4>Tanker and Container</h4>
-                    <p>Competent, certificated crews for specialized international vessel categories.</p>
-                    <span>Crew Management</span>
-                </article>
-                <article class="mini-item">
-                    <h4>Inland and Fishing Vessels</h4>
-                    <p>Responsive staffing and operational support tailored to principal requirements.</p>
-                    <span>Operations Support</span>
-                </article>
+        <section class="content-section">
+            <div class="profile-copy">
+                <h3>GOLDEN INFINITY MANAGEMENT CORP.</h3>
+                <p>with the highest standards seafarers, employed with qualifications exceeding STCW95 requirements and complying with the most demanding flag states.</p>
             </div>
         </section>
 
-        <section id="partners" class="content-section learn-strip">
-            <div class="section-head">
-                <h2>Awards and Recognition</h2>
-                <a href="awards.html">View All Awards</a>
-            </div>
-            <div class="chips-wrap">
-                <a href="award-1992-top-performer.html">POEA Top Performer Award (1992)</a>
-                <a href="award-2002-operations.html">Sustained Operations Citation (2002)</a>
-                <a href="award-2002-competence.html">Filipino Seafarer Competence Promotion Citation (2002)</a>
+        <section class="content-section">
+            <div class="profile-copy">
+                <h3>GOLDEN INFINITY MANAGEMENT CORP.</h3>
+                <p>aims to provide its clients with high quality and cost-effective crew management services without compromising on safety and the environment. Our primary concern is geared towards the specific and individual needs and requirements of our principals. We continuously strive to propose and hire only the best qualified and experienced officers and ratings for all our principals.</p>
             </div>
         </section>
 
-        <section class="content-section leaders-section">
+        <section id="vision" class="content-section">
             <div class="section-head">
-                <h2>Leadership</h2>
-                <a href="leaders.html">View Full Leadership</a>
+                <h2>Vision</h2>
             </div>
-            <div class="leaders-grid">
-                <a class="leader-link" href="leader-praxedes.html">
-                    <article class="leader-card">
-                        <img class="leader-photo" src="images/praxedes-bronda.png" alt="C/E Praxedes P. Bronda" onerror="this.onerror=null;this.src='https://placehold.co/800x1000/e9f2fb/1f3f62?text=Leadership+Photo';">
-                        <h4>C/E Praxedes P. Bronda</h4>
-                        <p>President</p>
-                    </article>
-                </a>
-                <a class="leader-link" href="leader-glicerio.html">
-                    <article class="leader-card">
-                        <img class="leader-photo" src="images/glicerio-penones.png" alt="Capt. Glicerio Penones Jr." onerror="this.onerror=null;this.src='https://placehold.co/800x1000/e9f2fb/1f3f62?text=Leadership+Photo';">
-                        <h4>Capt. Glicerio Penones Jr.</h4>
-                        <p>Vice President / General Manager</p>
-                    </article>
-                </a>
-                <a class="leader-link" href="leader-riza.html">
-                    <article class="leader-card">
-                        <img class="leader-photo" src="images/riza-maratas.jpg" alt="Riza Monica A. Maratas" onerror="this.onerror=null;this.src='https://placehold.co/800x1000/e9f2fb/1f3f62?text=Leadership+Photo';">
-                        <h4>Riza Monica A. Maratas</h4>
-                        <p>Administrative Manager / Crew Supervisor</p>
-                    </article>
-                </a>
+            <article class="quote-card">
+                <p>"To be recognized as the most prestigious and reliable supplier of qualified Filipino marine personnel that consistently satisfies Principals' requirements."</p>
+            </article>
+        </section>
+
+        <section id="mission" class="content-section">
+            <div class="section-head">
+                <h2>Mission</h2>
             </div>
+            <article class="quote-card">
+                <ul class="mission-list">
+                    <li>We shall commit to the attainment of our vision and to the global success of B.B. Shipping Management</li>
+                    <li>We shall be partners in the development of our clients' business through the supply of qualified marine personnel.</li>
+                    <li>We shall promote and protect the general welfare of the Overseas Filipino Seafarers.</li>
+                    <li>We shall enhance our company's resources and ensure fair returns to our stockholders' investments.</li>
+                    <li>We shall foster a climate that promotes the personal and professional development of our employees.</li>
+                    <li>We shall develop mutually beneficial and lasting partnerships with our suppliers.</li>
+                    <li>We shall be responsible partners of our government in promoting the Filipinos as our national pride.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="services" class="content-section">
+            <div class="section-head">
+                <h2>Our Services</h2>
+            </div>
+            <div class="profile-copy">
+                <p>GOLDEN INFINITY MANAGEMENT CORP. was focused more with giving the most outstanding shipping services to all of our counterparts either locally or abroad, as we aim to keep and continue our ventures with our existing principals and prospect clienteles as we also want to ensure our stability and competency in this fast growing shipping industry...</p>
+                <p>But what we can assure now is to honestly render the best quality of SERVICES that we could offer...</p>
+            </div>
+            <div class="service-acrostic">
+                <div><strong>S</strong><span>security of your crew and vessel</span></div>
+                <div><strong>E</strong><span>excellent shipping agency and over all services</span></div>
+                <div><strong>R</strong><span>reports immediately any matter concerning operations</span></div>
+                <div><strong>V</strong><span>visualizes what the operations should be, ahead of time</span></div>
+                <div><strong>I</strong><span>interest of our principals and clienteles was very much protected</span></div>
+                <div><strong>C</strong><span>coordinates well with all parties concern prior vessel/crew's arrival</span></div>
+                <div><strong>E</strong><span>extra-ordinary care and attendance of vessel the crew reported</span></div>
+                <div><strong>S</strong><span>supervise and simplify things to expedite the operations .</span></div>
+            </div>
+            <div class="profile-copy mt-3">
+                <p>As one of the established Shipping Agency here in Philippines among others, we are looking forward of having a chance working with your esteemed company and it would be a great pleasure for us to give you full assistance to the best of our knowledge, anytime needed.</p>
+            </div>
+        </section>
+
+        <section id="crew" class="content-section">
+            <div class="section-head">
+                <h2>Crew and Personnel</h2>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-head">
+                <h2>Crew</h2>
+            </div>
+            <div class="profile-copy">
+                <p>Sourcing the best seafarers to ensure that the quality of the personnel we employ meet the standards set-forth by our clients is a fundamental part of our business.</p>
+                <p>Rigid technical interview and written/computer based screening procedures are strictly implemented during the recruitment process. Checking the candidates' background, health condition, and good command of English is also done prior considering any one for shipboard employment.</p>
+                <p>GOLDEN INIFNITY MANAGEMENT CORP. maintains a complete computerized database of seafarers - Maritime Personnel System (MPS) A Crew Management Module used to optimize our crew planning and to produce a variety of database generated crew lists, crew on vacation, crew on sick leave etc. Our crew module contains all the data required for entering, view and printing all seafarers, education documentation, training &amp; medical history, previous sea-services reports, etc.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-head">
+                <h2>Personnel</h2>
+            </div>
+            <div class="profile-copy">
+                <p>GOLDEN INIFNITY MANAGEMENT CORP. Team is composed of seasoned and well-experienced Staff who oversee the selection, administration and crew planning. Their experience in the field of crewing to manage efficiently any challenge that may be faced in the aim to exceed clients' expectations.</p>
+                <p>Crew administration such as Processing, Crew Claims and Welfare, Accounting and Training are handled by young and dynamic team who satisfies the most challenging demands of the clients, the seafarers' and their families',</p>
+                <p>We make it a point to follow and keep close contact with our seagoing personnel, and to react immediately to solve any crewing problem.</p>
+            </div>
+        </section>
+
+        <section id="organization" class="content-section leaders-section">
+            <div class="section-head">
+                <h2>ORGANIZATION CHART</h2>
+            </div>
+            <h3 class="profile-subhead">CONTACT IN CHARGE:</h3>
+            <div class="org-list">
+                <div><strong>PRESIDENT</strong><span>ANNIE LOU B. PALO</span></div>
+                <div><strong>VICE - PRESIDENT</strong><span>CARLOS O. LOBITE</span></div>
+                <div><strong>CORP. SECRETARY</strong><span>JANET B. BALUYOT</span></div>
+                <div><strong>ACCOUNTING OFFICER</strong><span>HONEY JANE B. PALO</span></div>
+                <div><strong>TREASURER</strong><span>ELMER D. PALO</span></div>
+                <div><strong>ASST./ OPERATION'S MANAGER</strong><span>DIESEL RAY M. BAGUIO</span></div>
+                <div><strong>LIAISON OFFICER</strong><span>AILEEN B. REYES</span></div>
+                <div><strong>DOCUMENTATION OFFICER</strong><span>KRYSTILLE B. BALIOS</span></div>
+                <div><strong>UTILITY/MESSENGER</strong><span>JEMAR L. BAGUIO</span></div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section learn-strip">
+            <div class="section-head">
+                <h2>OFFICE LOCATION :</h2>
+            </div>
+            <div class="contact-panel">
+                <p><strong>MANILA OFFICE</strong></p>
+                <p>1431 A. Mabini St. Rm. 505 5th Flr. MRS Bldg.</p>
+                <p>Roxas Blvd.,Ermita, Manila</p>
+                <p>Tel: (632)952-70-20 / Fax: (632)523-78-98</p>
+                <p>E-mail: bbshippingm@yahoo.com.ph</p>
+                <p>Ginmac2018@yahoo.com</p>
+                <p>Facebook page : https://www.facebook.com/ginmac27</p>
+            </div>
+        </section>
+
+        <section class="content-section thank-you-section">
+            <h2>Thank You!</h2>
+            <p>"Competency, Excellency, Quality and Security is our main PRIORITY"</p>
+        </section>
+
+        <section id="appointment" class="content-section appointment-section">
+            <div class="section-head">
+                <h2>Request an Appointment</h2>
+            </div>
+            <form id="appointmentForm" class="appointment-form">
+                <div id="appointment-message" class="alert d-none"></div>
+                <div class="form-grid">
+                    <div>
+                        <label class="form-label" for="appointmentName">Client name</label>
+                        <input class="form-control" id="appointmentName" name="clientName" maxlength="160" required>
+                    </div>
+                    <div>
+                        <label class="form-label" for="appointmentEmail">Email address</label>
+                        <input class="form-control" type="email" id="appointmentEmail" name="clientEmail" maxlength="255" required>
+                    </div>
+                    <div>
+                        <label class="form-label" for="appointmentPhone">Phone</label>
+                        <input class="form-control" id="appointmentPhone" name="clientPhone" maxlength="80">
+                    </div>
+                    <div>
+                        <label class="form-label" for="appointmentCompany">Company</label>
+                        <input class="form-control" id="appointmentCompany" name="companyName" maxlength="180">
+                    </div>
+                    <div>
+                        <label class="form-label" for="appointmentPurpose">Purpose</label>
+                        <select class="form-select" id="appointmentPurpose" name="purpose" required>
+                            <option value="CREW_MANAGEMENT">Crew management</option>
+                            <option value="VESSEL_OPERATIONS">Vessel operations</option>
+                            <option value="DOCUMENTATION">Documentation</option>
+                            <option value="ACCOUNTING">Accounting</option>
+                            <option value="GENERAL_INQUIRY">General inquiry</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label" for="appointmentStart">Preferred start</label>
+                        <input class="form-control" type="datetime-local" id="appointmentStart" name="preferredStartAt" required>
+                    </div>
+                    <div>
+                        <label class="form-label" for="appointmentEnd">Preferred end</label>
+                        <input class="form-control" type="datetime-local" id="appointmentEnd" name="preferredEndAt" required>
+                    </div>
+                    <div class="form-grid-wide">
+                        <label class="form-label" for="appointmentNotes">Notes</label>
+                        <textarea class="form-control" id="appointmentNotes" name="notes" rows="4" maxlength="2000"></textarea>
+                    </div>
+                </div>
+                <div class="appointment-actions">
+                    <button class="btn btn-primary btn-lg" type="submit">Submit Appointment</button>
+                </div>
+            </form>
         </section>
     </main>
 
     <footer class="site-footer">
         <div class="container d-flex justify-content-between flex-wrap gap-3">
             <div>
-                <h5>Brilliant Seas</h5>
-                <p>International ship manning and seafarer workforce solutions.</p>
+                <h5>GOLDEN INFINITY MANAGEMENT CORP.</h5>
+                <p>Company Profile</p>
             </div>
             <div>
-                <p>About | Services | Partners</p>
-                <p>Copyright 2023</p>
+                <p>WELCOME TO</p>
+                <p>Thank You!</p>
             </div>
         </div>
     </footer>
@@ -205,5 +292,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="js/auth.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/appointment.js"></script>
 </body>
 </html>

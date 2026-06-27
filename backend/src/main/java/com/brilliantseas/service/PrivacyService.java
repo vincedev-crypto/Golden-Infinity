@@ -7,6 +7,7 @@ import com.brilliantseas.exception.BusinessException;
 import com.brilliantseas.exception.ErrorCode;
 import com.brilliantseas.repository.PassengerRepository;
 import com.brilliantseas.repository.UserRepository;
+import com.brilliantseas.security.RlsContextService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
@@ -39,6 +40,7 @@ public class PrivacyService {
     private final UserRepository userRepository;
     private final PassengerRepository passengerRepository;
     private final ApplicationEventPublisher auditPublisher;
+    private final RlsContextService rlsContextService;
 
     /**
      * Complete account anonymization (Right to Erasure).
@@ -46,6 +48,7 @@ public class PrivacyService {
      */
     @Transactional
     public void executeRightToErasure() {
+        rlsContextService.applyCurrentUserContext();
         UUID currentUserId = UUID.fromString((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
         User user = userRepository.findById(currentUserId)
@@ -66,9 +69,10 @@ public class PrivacyService {
         
         userRepository.save(user);
 
-        // 2. Anonymize Passenger profiles via repository query (simulated loop)
-        // In real app, we would query passengers belonging to this user's bookings.
-        // For scope, we assume passenger redaction happens via async batch if massive.
+        // 2. Anonymize passenger profiles attached to this user's bookings.
+        List<Passenger> passengers = passengerRepository.findActiveByBookingOwnerId(currentUserId);
+        passengers.forEach(Passenger::anonymizeForErasure);
+        passengerRepository.saveAll(passengers);
         
         auditPublisher.publishEvent(AuditEvent.builder()
             .source(this)

@@ -45,6 +45,7 @@ public enum ErrorCode {
     BOL_ALREADY_ISSUED("BIZ_007", "Bill of lading has already been issued and cannot be modified", 409),
     USER_NOT_FOUND("BIZ_008", "User not found", 404),
     FARE_CLASS_NOT_FOUND("BIZ_009", "Fare class not found", 404),
+    APPOINTMENT_NOT_FOUND("BIZ_010", "Appointment not found", 404),
 
     // ── Rate Limiting (429) ──────────────────────────────────────
     RATE_LIMIT_EXCEEDED("RATE_001", "Too many requests — please try again later", 429),

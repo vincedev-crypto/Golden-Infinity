@@ -5,7 +5,7 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:${DB_PORT:5432}/brilliantseas
+    url: jdbc:postgresql://localhost:${DB_PORT:5433}/brilliantseas
     username: ${DB_APP_USER:${DB_POSTGRES_USER:postgres}}
     password: ${DB_APP_PASSWORD:${DB_POSTGRES_PASSWORD:postgres_superuser_pass}}
     hikari:
@@ -32,6 +32,8 @@ logging:
     org.hibernate.orm.jdbc.bind: TRACE
 
 security:
+  cookies:
+    secure: false
   jwt:
     private-key-path: classpath:keys/private.pem
     public-key-path: classpath:keys/public.pem

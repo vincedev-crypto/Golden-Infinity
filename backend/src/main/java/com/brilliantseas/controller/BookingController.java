@@ -3,6 +3,10 @@ package com.brilliantseas.controller;
 import com.brilliantseas.domain.Booking;
 import com.brilliantseas.dto.ApiResponse;
 import com.brilliantseas.service.BookingService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,7 +33,7 @@ public class BookingController {
 
     @PreAuthorize("hasAuthority('BOOKING:CREATE')")
     @PostMapping
-    public ResponseEntity<ApiResponse<BookingResponse>> createBooking(@RequestBody CreateBookingRequest request) {
+    public ResponseEntity<ApiResponse<BookingResponse>> createBooking(@Valid @RequestBody CreateBookingRequest request) {
         
         Booking booking = bookingService.createBooking(
             request.getVoyageId(), 
@@ -51,8 +55,14 @@ public class BookingController {
     // DTOs for the controller interface
     @Data
     public static class CreateBookingRequest {
+        @NotNull(message = "Voyage ID is required")
         private UUID voyageId;
+
+        @NotNull(message = "Fare class ID is required")
         private UUID fareClassId;
+
+        @Min(value = 1, message = "Passenger count must be at least 1")
+        @Max(value = 20, message = "Passenger count cannot exceed 20")
         private int passengerCount;
     }
 

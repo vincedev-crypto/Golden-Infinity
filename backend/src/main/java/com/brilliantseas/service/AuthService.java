@@ -245,6 +245,25 @@ public class AuthService {
         refreshTokenRepository.save(rt);
     }
 
+    @Transactional
+    public void logout(String plainToken) {
+        if (plainToken == null || plainToken.isBlank()) {
+            return;
+        }
+
+        String tokenHash = sha256Hex(plainToken);
+        refreshTokenRepository.findByTokenHash(tokenHash).ifPresent(token -> {
+            token.revoke();
+            refreshTokenRepository.save(token);
+            publishAuthAudit(token.getUser().getId(), token.getUser().getRole(),
+                    "USER_LOGOUT", UUID.randomUUID(), "SUCCESS");
+        });
+    }
+
+    public long getRefreshTokenExpirySeconds() {
+        return jwtTokenProvider.getRefreshTokenExpirySeconds();
+    }
+
     private InetAddress parseIpAddress(String ip) {
         if (ip == null || ip.isBlank()) {
             return null;

@@ -3,7 +3,9 @@ package com.brilliantseas.security;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.Cipher;
@@ -63,6 +65,12 @@ public class PiiEncryptionConverter implements AttributeConverter<String, byte[]
     private static final String KEY_ENV = "PII_ENCRYPTION_KEY";
 
     private static String encryptionKey;
+    private static Environment environment;
+
+    @Autowired
+    public void setEnvironment(Environment environment) {
+        PiiEncryptionConverter.environment = environment;
+    }
 
     @Value("${security.encryption.pii-key}")
     public void setEncryptionKey(String key) {
@@ -177,13 +185,14 @@ public class PiiEncryptionConverter implements AttributeConverter<String, byte[]
             key = encryptionKey;
         }
 
-        // Local-dev fallback: keep behavior consistent with application.yml default
-        // (`security.encryption.pii-key` falls back to empty string when unset).
         if (key == null) {
             key = "";
         }
 
         if (key.isBlank()) {
+            if (environment != null && !java.util.Arrays.asList(environment.getActiveProfiles()).contains("dev")) {
+                throw new IllegalStateException(KEY_ENV + " must be set outside the dev profile");
+            }
             log.warn("{} not set; using empty passphrase for PII encryption in current runtime", KEY_ENV);
         }
 

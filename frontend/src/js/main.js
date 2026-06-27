@@ -13,7 +13,7 @@ function showLogin() {
 }
 
 function showRegister() {
-    alert("In this demo, please use backend endpoints to register, or use a seeded user.");
+    window.location.href = 'register.html';
 }
 
 function updateUI(isAuthenticated) {
@@ -21,8 +21,9 @@ function updateUI(isAuthenticated) {
     const userControls = document.getElementById('user-controls');
     const greeting = document.getElementById('user-greeting');
     const bookNav = document.getElementById('nav-book-ticket');
+    const adminNav = document.getElementById('nav-admin-appointments');
 
-    if (!authControls || !userControls || !greeting || !bookNav) {
+    if (!authControls || !userControls || !greeting || !bookNav || !adminNav) {
         return;
     }
 
@@ -36,10 +37,12 @@ function updateUI(isAuthenticated) {
         // Safe DOM manipulation
         greeting.textContent = `Hello, ${user.firstName}`;
         bookNav.style.display = 'block';
+        adminNav.style.display = ['STAFF', 'ADMIN', 'SUPERADMIN'].includes(user.role) ? 'block' : 'none';
     } else {
         authControls.setAttribute('style', 'display: flex!important;');
         userControls.setAttribute('style', 'display: none!important;');
         bookNav.style.display = 'none';
+        adminNav.style.display = 'none';
         greeting.textContent = '';
     }
 }

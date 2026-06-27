@@ -129,3 +129,11 @@ logging:
     org.flywaydb: INFO
   pattern:
     console: "%d{ISO8601} [%thread] %-5level %logger{36} - [%X{correlationId}] %msg%n"
+
+# ── Application Notifications ───────────────────────────────────────────────
+app:
+  notifications:
+    appointments:
+      enabled: ${APPOINTMENT_EMAIL_ENABLED:false}
+    from: ${NOTIFICATION_FROM:no-reply@golden-infinity.local}
+    staff-email: ${APPOINTMENT_STAFF_EMAIL:}

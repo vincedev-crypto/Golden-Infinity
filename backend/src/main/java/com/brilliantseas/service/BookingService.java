@@ -7,6 +7,7 @@ import com.brilliantseas.exception.ErrorCode;
 import com.brilliantseas.repository.BookingRepository;
 import com.brilliantseas.repository.FareClassRepository;
 import com.brilliantseas.repository.VoyageRepository;
+import com.brilliantseas.security.RlsContextService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
@@ -15,6 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.security.SecureRandom;
+import java.util.Base64;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -34,13 +38,17 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BookingService {
 
+    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
+
     private final BookingRepository bookingRepository;
     private final VoyageRepository voyageRepository;
     private final FareClassRepository fareClassRepository;
     private final ApplicationEventPublisher auditPublisher;
+    private final RlsContextService rlsContextService;
 
     @Transactional
     public Booking createBooking(UUID voyageId, UUID fareClassId, int passengerCount) {
+        rlsContextService.applyCurrentUserContext();
         
         UUID currentUserId = UUID.fromString((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
@@ -51,7 +59,7 @@ public class BookingService {
             throw new BusinessException(ErrorCode.VOYAGE_DEPARTED);
         }
 
-        FareClass fareClass = fareClassRepository.findByIdAndIsActiveTrue(fareClassId)
+        FareClass fareClass = fareClassRepository.findWithLockByIdAndIsActiveTrue(fareClassId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.FARE_CLASS_NOT_FOUND));
 
         if (fareClass.getAvailableSlots() < passengerCount) {
@@ -95,7 +103,9 @@ public class BookingService {
     }
 
     private String generateBookingRef() {
-        return "BSS-" + System.currentTimeMillis() % 10000000;
+        byte[] bytes = new byte[9];
+        SECURE_RANDOM.nextBytes(bytes);
+        return "APT-" + Base64.getUrlEncoder().withoutPadding().encodeToString(bytes).toUpperCase(Locale.ROOT);
     }
 
     private String getRoleFromContext() {
