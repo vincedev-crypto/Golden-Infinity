@@ -10,11 +10,11 @@ spring:
     hikari:
       maximum-pool-size: ${DB_POOL_MAX:15}
       minimum-idle: ${DB_POOL_MIN:5}
-      # Enable SSL for production database connections
-      data-source-properties:
-        ssl: true
-        sslmode: verify-full
-        sslrootcert: ${DB_SSL_ROOT_CERT:/etc/ssl/certs/rds-ca-bundle.pem}
+
+  data:
+    redis:
+      ssl:
+        enabled: ${REDIS_SSL_ENABLED:false}
 
   flyway:
     clean-disabled: true    # NEVER allow flyway:clean in production
@@ -29,10 +29,10 @@ security:
   rate-limit:
     enabled: true
   cors:
-    allowed-origins: ${CORS_ORIGINS:https://brilliantseas.com.ph}
+    allowed-origins: ${CORS_ORIGINS:https://goldeninfinity.com,https://www.goldeninfinity.com}
 
 server:
-  port: 8080
+  port: ${PORT:${SERVER_PORT:8080}}
   tomcat:
     max-threads: 200
     accept-count: 100

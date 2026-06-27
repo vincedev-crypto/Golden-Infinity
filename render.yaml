@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: golden-infinity-api
+    env: docker
+    plan: free
+    rootDir: backend
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: CORS_ORIGINS
+        value: https://goldeninfinity.com,https://www.goldeninfinity.com
+      - key: DB_URL
+        sync: false
+      - key: DB_APP_USER
+        sync: false
+      - key: DB_APP_PASSWORD
+        sync: false
+      - key: REDIS_HOST
+        sync: false
+      - key: REDIS_PORT
+        sync: false
+      - key: REDIS_PASSWORD
+        sync: false
+      - key: REDIS_SSL_ENABLED
+        value: "true"
+      - key: PII_ENCRYPTION_KEY
+        generateValue: true
+      - key: RATE_LIMIT_ENABLED
+        value: "true"
+      - key: APPOINTMENT_EMAIL_ENABLED
+        value: "false"
+      - key: NOTIFICATION_FROM
+        value: no-reply@golden-infinity.local
+      - key: APPOINTMENT_STAFF_EMAIL
+        sync: false
