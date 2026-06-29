@@ -19,19 +19,49 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top main-nav">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="admin-appointments.html">
                 <span class="brand-title">Golden Infinity</span>
                 <small>Company Dashboard</small>
             </a>
             <div class="d-flex align-items-center gap-2">
                 <span class="navbar-text text-white d-none d-md-inline" id="admin-greeting"></span>
-                <a class="btn btn-outline-light" href="index.html">Public Website</a>
+                <a class="btn btn-outline-light" href="admin-appointments.html">Company Dashboard</a>
                 <button class="btn btn-warning" type="button" onclick="auth.logout()">Logout</button>
             </div>
         </div>
     </nav>
 
     <main class="container sections-wrap admin-wrap">
+        <section class="content-section admin-company-overview">
+            <div class="section-head">
+                <h2>Company Information</h2>
+            </div>
+            <div class="row g-3">
+                <div class="col-lg-5">
+                    <div class="company-info-panel">
+                        <p class="eyebrow profile-eyebrow">Golden Infinity Management Corp.</p>
+                        <h3>Employee Side</h3>
+                        <p class="mb-0">Use this dashboard to review client appointment requests, update schedules, and manage appointment status for the company.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="company-info-panel">
+                        <h3>Office Location</h3>
+                        <p>1431 A. Mabini St. Rm. 505 5th Flr. MRS Bldg., Roxas Blvd., Ermita, Manila</p>
+                        <p class="mb-0">Tel: (632) 952-70-20<br>Fax: (632) 523-78-98</p>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="company-info-panel">
+                        <h3>Company Email</h3>
+                        <p><a href="mailto:admin@goldeninfinityph.com">admin@goldeninfinityph.com</a></p>
+                        <p><a href="mailto:bbshippingm@yahoo.com.ph">bbshippingm@yahoo.com.ph</a></p>
+                        <p class="mb-0"><a href="https://www.facebook.com/ginmac27" target="_blank" rel="noopener">Facebook page</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="content-section admin-toolbar">
             <div>
                 <p class="eyebrow profile-eyebrow">Company Side</p>

@@ -5,6 +5,16 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // Attempt silent authentication on load (checks if user has a valid refresh cookie session)
     const isAuthenticated = await auth.silentRefresh();
+    const user = auth.getUser();
+    const companyRoles = ['STAFF', 'ADMIN', 'SUPERADMIN'];
+    const isCompanyUser = user && companyRoles.includes(user.role);
+    const params = new URLSearchParams(window.location.search);
+
+    if (isCompanyUser && params.get('public') !== '1') {
+        window.location.href = 'admin-appointments.html';
+        return;
+    }
+
     updateUI(isAuthenticated);
 });
 
