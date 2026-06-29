@@ -23,8 +23,9 @@ function updateUI(isAuthenticated) {
     const bookNav = document.getElementById('nav-book-ticket');
     const adminNav = document.getElementById('nav-admin-appointments');
     const companyLoginNav = document.getElementById('nav-company-login');
+    const publicAppointmentNav = document.getElementById('nav-public-appointment');
 
-    if (!authControls || !userControls || !greeting || !bookNav || !adminNav || !companyLoginNav) {
+    if (!authControls || !userControls || !greeting || !bookNav || !adminNav || !companyLoginNav || !publicAppointmentNav) {
         return;
     }
 
@@ -42,12 +43,14 @@ function updateUI(isAuthenticated) {
         bookNav.style.display = isCompanyUser ? 'none' : 'block';
         adminNav.style.display = isCompanyUser ? 'block' : 'none';
         companyLoginNav.style.display = isCompanyUser ? 'none' : 'block';
+        publicAppointmentNav.style.display = isCompanyUser ? 'none' : 'block';
     } else {
         authControls.setAttribute('style', 'display: flex!important;');
         userControls.setAttribute('style', 'display: none!important;');
         bookNav.style.display = 'none';
         adminNav.style.display = 'none';
         companyLoginNav.style.display = 'block';
+        publicAppointmentNav.style.display = 'block';
         greeting.textContent = '';
     }
 }
