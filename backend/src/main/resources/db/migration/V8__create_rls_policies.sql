@@ -28,7 +28,11 @@ BEGIN
 END
 $$;
 
-GRANT CONNECT ON DATABASE brilliantseas TO app_write;
+DO $$
+BEGIN
+    EXECUTE format('GRANT CONNECT ON DATABASE %I TO app_write', current_database());
+END
+$$;
 GRANT USAGE ON SCHEMA public TO app_write;
 GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA public TO app_write;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO app_write;
@@ -45,7 +49,11 @@ BEGIN
 END
 $$;
 
-GRANT CONNECT ON DATABASE brilliantseas TO app_read;
+DO $$
+BEGIN
+    EXECUTE format('GRANT CONNECT ON DATABASE %I TO app_read', current_database());
+END
+$$;
 GRANT USAGE ON SCHEMA public TO app_read;
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO app_read;
 
@@ -58,7 +66,11 @@ BEGIN
 END
 $$;
 
-GRANT CONNECT ON DATABASE brilliantseas TO audit_writer;
+DO $$
+BEGIN
+    EXECUTE format('GRANT CONNECT ON DATABASE %I TO audit_writer', current_database());
+END
+$$;
 GRANT USAGE ON SCHEMA public TO audit_writer;
 GRANT INSERT ON audit_log TO audit_writer;
 GRANT INSERT ON data_access_log TO audit_writer;
@@ -75,7 +87,11 @@ BEGIN
 END
 $$;
 
-GRANT CONNECT ON DATABASE brilliantseas TO app_migrator;
+DO $$
+BEGIN
+    EXECUTE format('GRANT CONNECT ON DATABASE %I TO app_migrator', current_database());
+END
+$$;
 GRANT ALL ON SCHEMA public TO app_migrator;
 GRANT ALL ON ALL TABLES IN SCHEMA public TO app_migrator;
 GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO app_migrator;
