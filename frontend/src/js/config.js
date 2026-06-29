@@ -1,6 +1,6 @@
 (function() {
     const localApi = 'http://localhost:8084';
-    const productionApi = 'https://golden-infinity-api.onrender.com';
+    const productionApi = 'https://api.goldeninfinityph.com';
     const apiOrigin = ['localhost', '127.0.0.1'].includes(window.location.hostname)
         ? localApi
         : productionApi;
