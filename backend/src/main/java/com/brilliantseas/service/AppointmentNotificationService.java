@@ -48,9 +48,12 @@ public class AppointmentNotificationService {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, StandardCharsets.UTF_8.name());
             helper.setFrom(fromAddress);
-            helper.setTo(appointment.getClientEmail());
             if (staffEmail != null && !staffEmail.isBlank()) {
-                helper.setCc(staffEmail);
+                helper.setTo(staffEmail);
+                helper.setReplyTo(appointment.getClientEmail());
+                helper.setCc(appointment.getClientEmail());
+            } else {
+                helper.setTo(appointment.getClientEmail());
             }
             helper.setSubject("Appointment request received: " + appointment.getAppointmentRef());
             helper.setText(buildEmailBody(appointment), false);
@@ -81,9 +84,12 @@ public class AppointmentNotificationService {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, StandardCharsets.UTF_8.name());
             helper.setFrom(fromAddress);
-            helper.setTo(appointment.getClientEmail());
             if (staffEmail != null && !staffEmail.isBlank()) {
-                helper.setCc(staffEmail);
+                helper.setTo(staffEmail);
+                helper.setReplyTo(appointment.getClientEmail());
+                helper.setCc(appointment.getClientEmail());
+            } else {
+                helper.setTo(appointment.getClientEmail());
             }
             helper.setSubject("Appointment " + appointment.getStatus().toLowerCase() + ": "
                     + appointment.getAppointmentRef());
@@ -103,17 +109,27 @@ public class AppointmentNotificationService {
                 Thank you for requesting an appointment with Golden Infinity Management Corp.
 
                 Reference: %s
+                Client: %s
+                Email: %s
+                Phone: %s
+                Company: %s
                 Purpose: %s
                 Preferred schedule: %s to %s UTC
                 Status: %s
+                Notes: %s
 
                 Our team will review the request and contact you to confirm availability.
                 """.formatted(
                 appointment.getAppointmentRef(),
+                appointment.getClientName(),
+                appointment.getClientEmail(),
+                valueOrDash(appointment.getClientPhone()),
+                valueOrDash(appointment.getCompanyName()),
                 appointment.getPurpose(),
                 appointment.getPreferredStartAt(),
                 appointment.getPreferredEndAt(),
-                appointment.getStatus());
+                appointment.getStatus(),
+                valueOrDash(appointment.getNotes()));
     }
 
     private String buildUpdateEmailBody(ClientAppointment appointment) {
@@ -121,6 +137,8 @@ public class AppointmentNotificationService {
                 Your appointment with Golden Infinity Management Corp. has been updated.
 
                 Reference: %s
+                Client: %s
+                Email: %s
                 Purpose: %s
                 Schedule: %s to %s UTC
                 Status: %s
@@ -128,6 +146,8 @@ public class AppointmentNotificationService {
                 Please contact our office if you need further assistance.
                 """.formatted(
                 appointment.getAppointmentRef(),
+                appointment.getClientName(),
+                appointment.getClientEmail(),
                 appointment.getPurpose(),
                 appointment.getPreferredStartAt(),
                 appointment.getPreferredEndAt(),
@@ -170,5 +190,9 @@ public class AppointmentNotificationService {
                 .replace(",", "\\,")
                 .replace(";", "\\;")
                 .replace("\n", "\\n");
+    }
+
+    private String valueOrDash(String value) {
+        return value == null || value.isBlank() ? "-" : value;
     }
 }
