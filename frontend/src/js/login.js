@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!forceLogin) {
         const isAuthenticated = await auth.silentRefresh();
         if (isAuthenticated) {
-            window.location.href = 'index.html';
+            window.location.href = getPostLoginTarget();
             return;
         }
     }
@@ -24,10 +24,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             await auth.login(email, password);
             loginForm.reset();
-            window.location.href = 'index.html';
+            window.location.href = getPostLoginTarget();
         } catch (err) {
             errorDiv.textContent = err.message || 'Login failed';
             errorDiv.classList.remove('d-none');
         }
     });
+
+    function getPostLoginTarget() {
+        const next = params.get('next');
+        if (next) {
+            return next;
+        }
+
+        const user = auth.getUser();
+        const companyRoles = ['STAFF', 'ADMIN', 'SUPERADMIN'];
+        return user && companyRoles.includes(user.role) ? 'admin-appointments.html' : 'index.html';
+    }
 });
