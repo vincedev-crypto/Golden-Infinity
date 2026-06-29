@@ -22,8 +22,9 @@ function updateUI(isAuthenticated) {
     const greeting = document.getElementById('user-greeting');
     const bookNav = document.getElementById('nav-book-ticket');
     const adminNav = document.getElementById('nav-admin-appointments');
+    const companyLoginNav = document.getElementById('nav-company-login');
 
-    if (!authControls || !userControls || !greeting || !bookNav || !adminNav) {
+    if (!authControls || !userControls || !greeting || !bookNav || !adminNav || !companyLoginNav) {
         return;
     }
 
@@ -40,11 +41,13 @@ function updateUI(isAuthenticated) {
         greeting.textContent = `Hello, ${user.firstName}`;
         bookNav.style.display = isCompanyUser ? 'none' : 'block';
         adminNav.style.display = isCompanyUser ? 'block' : 'none';
+        companyLoginNav.style.display = isCompanyUser ? 'none' : 'block';
     } else {
         authControls.setAttribute('style', 'display: flex!important;');
         userControls.setAttribute('style', 'display: none!important;');
         bookNav.style.display = 'none';
         adminNav.style.display = 'none';
+        companyLoginNav.style.display = 'block';
         greeting.textContent = '';
     }
 }
