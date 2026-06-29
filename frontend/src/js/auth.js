@@ -4,7 +4,7 @@
  * SECURITY PATTERN:
  * 1. The Access Token (JWT) is stored ONLY in memory (variable closure).
  * 2. It is NEVER stored in localStorage, sessionStorage, or IndexedDB to prevent XSS exfiltration.
- * 3. The Refresh Token is handled entirely by the browser via HttpOnly, Secure, SameSite=Strict cookies.
+ * 3. The Refresh Token is handled entirely by the browser via HttpOnly cookies.
  *    The JavaScript application NEVER sees the Refresh Token.
  */
 const auth = (function() {

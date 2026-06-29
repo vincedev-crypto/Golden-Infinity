@@ -87,6 +87,9 @@ security:
     pii-key: ${PII_ENCRYPTION_KEY:}          # pgcrypto symmetric key — from Vault
   rate-limit:
     enabled: ${RATE_LIMIT_ENABLED:true}
+  cookies:
+    secure: ${SECURITY_COOKIES_SECURE:true}
+    same-site: ${SECURITY_COOKIES_SAME_SITE:Strict}
   cors:
     allowed-origins: ${CORS_ORIGINS:http://localhost:3000,http://localhost:8082}
     max-age-seconds: 3600

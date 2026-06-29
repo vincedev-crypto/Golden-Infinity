@@ -28,8 +28,11 @@ spring:
 security:
   rate-limit:
     enabled: true
+  cookies:
+    secure: ${SECURITY_COOKIES_SECURE:true}
+    same-site: ${SECURITY_COOKIES_SAME_SITE:None}
   cors:
-    allowed-origins: ${CORS_ORIGINS:https://goldeninfinity.com,https://www.goldeninfinity.com}
+    allowed-origins: ${CORS_ORIGINS:https://golden-infinity.onrender.com,http://goldeninfinity.com.ph,https://goldeninfinity.com.ph,http://www.goldeninfinity.com.ph,https://www.goldeninfinity.com.ph}
 
 server:
   port: ${PORT:${SERVER_PORT:8080}}

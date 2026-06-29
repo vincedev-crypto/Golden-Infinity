@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const result = await response.json();
             if (!response.ok) {
-                throw new Error(result.error?.message || result.message || 'Appointment request failed');
+                throw new Error(getErrorMessage(result));
             }
 
             form.reset();
@@ -53,6 +53,26 @@ document.addEventListener('DOMContentLoaded', () => {
             setMessage(error.message || 'Appointment request failed', 'danger');
         }
     });
+
+    function getErrorMessage(result) {
+        const details = result?.error?.details;
+        if (details && typeof details === 'object') {
+            const messages = Object.entries(details)
+                .map(([field, message]) => `${humanizeField(field)}: ${message}`)
+                .filter(Boolean);
+            if (messages.length) {
+                return messages.join(' ');
+            }
+        }
+
+        return result?.error?.message || result?.message || 'Appointment request failed';
+    }
+
+    function humanizeField(field) {
+        return field
+            .replace(/([A-Z])/g, ' $1')
+            .replace(/^./, (char) => char.toUpperCase());
+    }
 
     function toIsoInstant(value) {
         if (!value) {

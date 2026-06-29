@@ -34,6 +34,7 @@ logging:
 security:
   cookies:
     secure: false
+    same-site: Strict
   jwt:
     private-key-path: classpath:keys/private.pem
     public-key-path: classpath:keys/public.pem

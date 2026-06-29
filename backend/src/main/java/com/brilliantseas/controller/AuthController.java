@@ -22,7 +22,7 @@ import java.time.Duration;
  *
  * SECURITY DESIGN:
  * ──────────────────────────────────────────────────────────────────
- *   - Refresh Token is passed exclusively via HttpOnly, Secure, SameSite=Strict cookies.
+ *   - Refresh Token is passed exclusively via HttpOnly cookies.
  *   - Access Token is returned in the JSON body (in-memory storage on frontend).
  *   - Automatic refresh token rotation via POST /api/v1/auth/refresh.
  *   - Cookie path is scoped to auth endpoints so refresh and logout can both receive it.
@@ -40,6 +40,9 @@ public class AuthController {
 
     @Value("${security.cookies.secure:true}")
     private boolean secureCookies;
+
+    @Value("${security.cookies.same-site:Strict}")
+    private String cookieSameSite;
 
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<Void>> register(@Valid @RequestBody RegisterRequest request) {
@@ -101,7 +104,7 @@ public class AuthController {
         ResponseCookie cookie = ResponseCookie.from(REFRESH_COOKIE_NAME, "")
                 .httpOnly(true)
                 .secure(secureCookies)
-                .sameSite("Strict")
+                .sameSite(cookieSameSite)
                 .path(REFRESH_COOKIE_PATH)
                 .maxAge(Duration.ZERO)
                 .build();
@@ -114,7 +117,7 @@ public class AuthController {
         ResponseCookie cookie = ResponseCookie.from(REFRESH_COOKIE_NAME, token)
                 .httpOnly(true)
                 .secure(secureCookies)
-                .sameSite("Strict")
+                .sameSite(cookieSameSite)
                 .path(REFRESH_COOKIE_PATH)
                 .maxAge(Duration.ofSeconds(maxAgeSeconds))
                 .build();
