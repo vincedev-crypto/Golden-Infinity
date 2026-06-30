@@ -40,9 +40,26 @@ h5 {
 }
 
 .navbar-brand {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem;
+    line-height: 1.1;
+}
+
+.brand-logo-mark {
+    background: #02080f;
+    border: 1px solid rgba(242, 194, 84, 0.45);
+    border-radius: 6px;
+    height: 42px;
+    object-fit: contain;
+    padding: 0.15rem;
+    width: 64px;
+}
+
+.brand-copy {
     display: flex;
     flex-direction: column;
-    line-height: 1.1;
 }
 
 .brand-title {
@@ -97,6 +114,17 @@ h5 {
     margin-bottom: 0.95rem;
 }
 
+.hero-logo-wide {
+    background: #03080d;
+    border: 1px solid rgba(242, 194, 84, 0.4);
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 1rem;
+    max-width: min(100%, 460px);
+    padding: 0.25rem;
+    width: 100%;
+}
+
 .lead-copy {
     max-width: 92%;
     color: #d6e8fc;
@@ -130,6 +158,39 @@ h5 {
     font-size: 1.15rem;
     line-height: 1.45;
     margin-top: 0.55rem;
+}
+
+.fleet-section {
+    padding: 1.6rem;
+}
+
+.fleet-gallery {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.fleet-gallery figure {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin: 0;
+    overflow: hidden;
+}
+
+.fleet-gallery img {
+    aspect-ratio: 16 / 9;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+}
+
+.fleet-gallery figcaption {
+    color: var(--ink);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 0.75rem 0.9rem;
 }
 
 .btn-primary {
@@ -627,6 +688,17 @@ h5 {
     font-size: 0.92rem;
 }
 
+.company-panel-logo {
+    background: #03080d;
+    border: 1px solid rgba(242, 194, 84, 0.35);
+    border-radius: 8px;
+    display: block;
+    margin: 0 0 0.85rem;
+    max-width: 320px;
+    padding: 0.25rem;
+    width: 100%;
+}
+
 .admin-toolbar {
     align-items: end;
     display: flex;
@@ -844,6 +916,11 @@ h5 {
         font-size: 1.05rem;
     }
 
+    .brand-logo-mark {
+        height: 36px;
+        width: 54px;
+    }
+
     .navbar-brand small {
         letter-spacing: 0.08em;
     }
@@ -899,6 +976,10 @@ h5 {
     }
 
     .service-acrostic {
+        grid-template-columns: 1fr;
+    }
+
+    .fleet-gallery {
         grid-template-columns: 1fr;
     }
 
