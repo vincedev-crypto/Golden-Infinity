@@ -45,27 +45,34 @@ h5 {
     flex-direction: row;
     gap: 0.7rem;
     line-height: 1.1;
+    min-width: 0;
+    max-width: min(58vw, 440px);
 }
 
 .brand-logo-mark {
     background: #02080f;
     border: 1px solid rgba(242, 194, 84, 0.45);
     border-radius: 6px;
-    height: 42px;
+    flex: 0 0 56px;
+    height: 34px;
+    max-height: 34px;
+    max-width: 56px;
     object-fit: contain;
     padding: 0.15rem;
-    width: 64px;
+    width: 56px;
 }
 
 .brand-copy {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .brand-title {
     font-size: 1.35rem;
     font-weight: 800;
     letter-spacing: 0.02em;
+    overflow-wrap: anywhere;
 }
 
 .navbar-brand small {
@@ -119,8 +126,10 @@ h5 {
     border: 1px solid rgba(242, 194, 84, 0.4);
     border-radius: 8px;
     display: block;
+    height: auto;
     margin-bottom: 1rem;
     max-width: min(100%, 460px);
+    object-fit: contain;
     padding: 0.25rem;
     width: 100%;
 }
@@ -175,12 +184,14 @@ h5 {
     border: 1px solid var(--line);
     border-radius: 8px;
     margin: 0;
+    min-width: 0;
     overflow: hidden;
 }
 
 .fleet-gallery img {
-    aspect-ratio: 16 / 9;
     display: block;
+    height: clamp(150px, 17vw, 230px);
+    max-width: 100%;
     object-fit: cover;
     width: 100%;
 }
@@ -693,8 +704,11 @@ h5 {
     border: 1px solid rgba(242, 194, 84, 0.35);
     border-radius: 8px;
     display: block;
+    height: auto;
     margin: 0 0 0.85rem;
-    max-width: 320px;
+    max-height: 72px;
+    max-width: 270px;
+    object-fit: contain;
     padding: 0.25rem;
     width: 100%;
 }
@@ -917,8 +931,11 @@ h5 {
     }
 
     .brand-logo-mark {
-        height: 36px;
-        width: 54px;
+        flex-basis: 48px;
+        height: 30px;
+        max-height: 30px;
+        max-width: 48px;
+        width: 48px;
     }
 
     .navbar-brand small {
@@ -979,10 +996,6 @@ h5 {
         grid-template-columns: 1fr;
     }
 
-    .fleet-gallery {
-        grid-template-columns: 1fr;
-    }
-
     .org-list div {
         grid-template-columns: 1fr;
         gap: 0.25rem;
@@ -990,6 +1003,20 @@ h5 {
 
     .feature-card img {
         height: 210px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        max-width: calc(100vw - 96px);
+    }
+
+    .fleet-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .fleet-gallery img {
+        height: clamp(150px, 48vw, 240px);
     }
 }
 
