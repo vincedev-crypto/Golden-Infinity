@@ -181,12 +181,25 @@ const appointmentAdmin = (() => {
 
     async function updateAppointment(appointmentId) {
         try {
+            const appointment = findAppointment(appointmentId);
+            if (!appointment) {
+                throw new Error('Appointment not found');
+            }
+
+            const startValue = document.getElementById('adminStart').value;
+            const endValue = document.getElementById('adminEnd').value;
             const payload = {
                 status: document.getElementById('appointmentStatus').value,
-                preferredStartAt: new Date(document.getElementById('adminStart').value).toISOString(),
-                preferredEndAt: new Date(document.getElementById('adminEnd').value).toISOString(),
                 internalNotes: document.getElementById('internalNotes').value.trim()
             };
+
+            if (startValue !== toDateTimeLocal(appointment.preferredStartAt)) {
+                payload.preferredStartAt = new Date(startValue).toISOString();
+            }
+
+            if (endValue !== toDateTimeLocal(appointment.preferredEndAt)) {
+                payload.preferredEndAt = new Date(endValue).toISOString();
+            }
 
             const response = await auth.fetchWithAuth(`${API_BASE}/${appointmentId}`, {
                 method: 'PATCH',
@@ -196,7 +209,7 @@ const appointmentAdmin = (() => {
             const result = await response.json();
 
             if (!response.ok) {
-                throw new Error(result.error?.message || 'Could not update appointment');
+                throw new Error(getErrorMessage(result, 'Could not update appointment'));
             }
 
             const updated = result.data;
@@ -306,6 +319,26 @@ const appointmentAdmin = (() => {
             message.classList.remove('d-none');
             message.classList.add(`alert-${variant}`);
         }
+    }
+
+    function getErrorMessage(result, fallback) {
+        const details = result?.error?.details;
+        if (details && typeof details === 'object') {
+            const messages = Object.entries(details)
+                .map(([field, message]) => `${formatFieldName(field)}: ${message}`)
+                .filter(Boolean);
+            if (messages.length) {
+                return messages.join(' ');
+            }
+        }
+
+        return result?.error?.message || result?.message || fallback;
+    }
+
+    function formatFieldName(field) {
+        return String(field || '')
+            .replace(/([A-Z])/g, ' $1')
+            .replace(/^./, (char) => char.toUpperCase());
     }
 
     function formatPurpose(value) {
